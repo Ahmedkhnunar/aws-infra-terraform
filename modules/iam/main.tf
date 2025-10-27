@@ -19,7 +19,6 @@ resource "aws_iam_role" "managed" {
     ignore_changes = [
       description,
       permissions_boundary,
-      tags,
     ]
   }
 }
