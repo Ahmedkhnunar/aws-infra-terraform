@@ -14,9 +14,9 @@ variable "roles" {
 }
 
 variable "inline_policies" {
-  description = "Map keyed by role_id|policy_name to inline policy configs"
+  description = "Map keyed by role_name|policy_name to inline policy configs"
   type = map(object({
-    role_id     = string  # Must match a key from var.roles
+    role_name   = string  # Must match a key from var.roles
     policy_name = string
     policy_json = string  # JSON string
   }))

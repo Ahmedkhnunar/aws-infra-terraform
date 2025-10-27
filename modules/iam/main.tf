@@ -52,7 +52,7 @@ resource "aws_iam_role_policy" "inline" {
   for_each = var.inline_policies
 
   name   = each.value.policy_name
-  role   = aws_iam_role.managed[each.value.role_id].id
+  role   = aws_iam_role.managed[each.value.role_name].id
   policy = each.value.policy_json  # Already a JSON string
 
   depends_on = [aws_iam_role.managed]
