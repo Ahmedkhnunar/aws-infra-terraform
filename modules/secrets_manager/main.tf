@@ -16,8 +16,8 @@ resource "aws_secretsmanager_secret" "managed" {
 
   lifecycle {
     ignore_changes = [
-      recovery_window_in_days,
-      force_overwrite_replica_secret
+      # recovery_window_in_days,
+      # force_overwrite_replica_secret
     ]
   }
 }

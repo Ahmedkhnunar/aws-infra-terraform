@@ -18,3 +18,10 @@ module "dynamodb" {
   tags            = var.tags
   dynamodb_tables = var.dynamodb_tables
 }
+
+module "secrets" {
+  source      = "../../modules/secrets_manager"
+  environment = var.environment
+  tags        = var.tags
+  secrets   = var.secrets
+}
