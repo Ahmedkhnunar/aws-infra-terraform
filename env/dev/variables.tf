@@ -45,3 +45,18 @@ variable "inline_policies" {
   }))
   default = {}
 }
+
+variable "buckets" {
+  description = "S3 buckets configuration"
+  type = map(object({
+    bucket        = string
+    region        = string
+    creation_date = string
+  }))
+  default = {}
+}
+
+variable "dynamodb_tables" {
+  type = map(any)
+  default = {}
+}

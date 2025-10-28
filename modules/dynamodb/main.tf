@@ -34,14 +34,14 @@ resource "aws_dynamodb_table" "managed" {
 
   lifecycle {
     ignore_changes = [
-      deletion_protection_enabled,
-      billing_mode,
-      point_in_time_recovery,
-      global_secondary_index,
-      attribute,
-      replica,
-      stream_enabled,
-      stream_view_type
+      # deletion_protection_enabled,
+      # billing_mode,
+      # point_in_time_recovery,
+      # global_secondary_index,
+      # attribute,
+      # replica,
+      # stream_enabled,
+      # stream_view_type
     ]
   }
 }
