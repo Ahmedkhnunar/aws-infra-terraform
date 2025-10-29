@@ -18,17 +18,18 @@ resource "aws_kms_key" "managed" {
   lifecycle {
     prevent_destroy = true
     ignore_changes = [
-      deletion_window_in_days,
-      policy,
-      bypass_policy_lockout_safety_check
+      # deletion_window_in_days,
+      # policy,
+      # bypass_policy_lockout_safety_check
     ]
   }
 }
 resource "aws_kms_alias" "managed" {
   for_each = var.kms_aliases
 
-  name          = each.key
-  target_key_id = each.value
+  name = each.key
+  # Dynamically get the key_id from aws_kms_key.managed if exists, otherwise use each.value directly
+  target_key_id = try(aws_kms_key.managed[each.value].key_id, each.value)
 
   lifecycle {
     prevent_destroy = true
