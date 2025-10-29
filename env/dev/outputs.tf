@@ -31,3 +31,20 @@ output "eip_public_ips" {
   description = "Elastic IP public IPs created in the EIP module"
   value       = module.eip.eip_public_ips
 }
+output "subnet_ids" {
+  description = "Subnets created in the Subnet module"
+  value       = module.subnet.subnet_ids
+}
+output "subnet_arns" {
+  description = "Subnet ARNs created in the Subnet module"
+  value       = module.subnet.subnet_arns
+}
+output "subnet_cidr_blocks" {
+  description = "Subnet CIDR blocks created in the Subnet module"
+  value       = module.subnet.subnet_cidr_blocks
+}
+
+output "igw_ids" {
+  description = "Internet Gateways created in the Internet Gateway module"
+  value       = module.internet_gateway.igw_ids
+}
