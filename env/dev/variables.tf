@@ -110,6 +110,15 @@ variable "subnets" {
   }))
 }
 
+variable "internet_gateways" {
+  type = map(object({
+    Attachments = list(object({
+      VpcId = string
+    }))
+    tags = optional(list(object({ Key = string, Value = string })))
+  }))
+}
+
 variable "dynamodb_tables" {
   type = map(any)
   default = {}
