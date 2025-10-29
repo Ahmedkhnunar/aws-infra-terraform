@@ -1,3 +1,8 @@
+variable "vpc_map" {
+  type = map(string)
+  description = "Mapping of subnet Names to VPC IDs"
+}
+
 variable "subnets" {
   type = map(object({
     vpc_id                  = string

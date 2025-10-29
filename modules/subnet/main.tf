@@ -1,7 +1,12 @@
 resource "aws_subnet" "managed" {
   for_each = var.subnets
 
-  vpc_id                  = each.value.vpc_id
+  vpc_id = lookup(
+    var.vpc_map,
+    lookup({ for t in each.value.tags : t.Key => t.Value }, "Name", "unknown"),
+    "vpc-unknown"
+  )
+
   cidr_block              = each.value.cidr_block
   availability_zone_id    = each.value.availability_zone_id
   map_public_ip_on_launch = try(each.value.map_public_ip_on_launch, false)

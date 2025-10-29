@@ -31,12 +31,25 @@ module "vpc" {
   vpcs        = var.vpcs
 }
 
-# module "eip" {
-#   source       = "../../modules/eip"
-#   environment  = var.environment
-#   tags         = var.tags
-#   eips         = var.eips
-# }
+module "eip" {
+  source       = "../../modules/eip"
+  environment  = var.environment
+  tags         = var.tags
+  eips         = var.eips
+}
+
+module "subnet" {
+  source      = "../../modules/subnet"
+  environment = var.environment
+  tags        = var.tags
+  subnets     = var.subnets
+  vpc_map = {
+    "PrivateSubnet(AZ1)" = values(module.vpc.vpc_ids)[0]
+    "PrivateSubnet(AZ2)" = values(module.vpc.vpc_ids)[0]
+    "PublicSubnet(AZ1)"  = values(module.vpc.vpc_ids)[0]
+    "PublicSubnet(AZ2)"  = values(module.vpc.vpc_ids)[0]
+  }
+}
 
 # module "sns" {
 #   source      = "../../modules/sns"
@@ -53,15 +66,6 @@ module "vpc" {
 # }
 
 
-# -----------------------------
-# 🟡 2️⃣ Network layer
-# -----------------------------
-# module "subnet" {
-#   source      = "../../modules/subnet"
-#   environment = var.environment
-#   tags        = var.tags
-#   subnets     = var.subnets
-# }
 
 # module "internet_gateway" {
 #   source            = "../../modules/internet_gateway"

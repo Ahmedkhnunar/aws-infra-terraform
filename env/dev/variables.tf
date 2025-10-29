@@ -87,6 +87,29 @@ variable "vpcs" {
   }))
 }
 
+variable "eips" {
+  description = "Map of Elastic IPs and their configurations."
+  type = map(object({
+    allocation_id  = string
+    public_ip      = string
+    association_id = optional(string)
+    tags           = optional(list(object({
+      Key   = string
+      Value = string
+    })), [])
+  }))
+}
+
+variable "subnets" {
+  type = map(object({
+    vpc_id                  = string
+    cidr_block              = string
+    availability_zone_id    = string
+    map_public_ip_on_launch = optional(bool)
+    tags                    = optional(list(object({ Key = string, Value = string })))
+  }))
+}
+
 variable "dynamodb_tables" {
   type = map(any)
   default = {}
