@@ -11,6 +11,6 @@ resource "aws_eip" "managed" {
   )
 
   lifecycle {
-    ignore_changes = [tags]
+    ignore_changes = []
   }
 }
