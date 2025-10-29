@@ -1,7 +1,11 @@
 resource "aws_internet_gateway" "managed" {
   for_each = var.internet_gateways
 
-  vpc_id = each.value.Attachments[0].VpcId
+  vpc_id = lookup(
+    var.vpc_map,
+    lookup({ for t in coalesce(each.value.tags, []) : t.Key => t.Value }, "Name", "InternetGateway"),
+    values(var.vpc_map)[0]
+  )
 
   tags = merge(
     var.tags,
@@ -9,10 +13,7 @@ resource "aws_internet_gateway" "managed" {
   )
 
   lifecycle {
-    ignore_changes = [tags_all,tags]
+    ignore_changes = []
   }
 }
 
-output "igw_ids" {
-  value = { for k, v in aws_internet_gateway.managed : k => v.id }
-}

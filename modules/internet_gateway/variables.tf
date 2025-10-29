@@ -7,6 +7,10 @@ variable "internet_gateways" {
   }))
 }
 
+variable "vpc_map" {
+  description = "Mapping of Internet Gateway names to VPC IDs (from new VPCs)"
+  type        = map(string)
+}
 
 variable "tags" {
   type    = map(string)

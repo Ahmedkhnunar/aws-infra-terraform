@@ -51,6 +51,17 @@ module "subnet" {
   }
 }
 
+module "internet_gateway" {
+  source            = "../../modules/internet_gateway"
+  environment       = var.environment
+  tags              = var.tags
+  internet_gateways = var.internet_gateways
+  vpc_map = {
+    "InternetGateway" = values(module.vpc.vpc_ids)[0]
+  }
+}
+
+
 # module "sns" {
 #   source      = "../../modules/sns"
 #   environment = var.environment
@@ -65,14 +76,6 @@ module "subnet" {
 #   sqs_queues  = var.sqs_queues
 # }
 
-
-
-# module "internet_gateway" {
-#   source            = "../../modules/internet_gateway"
-#   environment       = var.environment
-#   tags              = var.tags
-#   internet_gateways = var.internet_gateways
-# }
 
 # module "route_table" {
 #   source        = "../../modules/route_table"
