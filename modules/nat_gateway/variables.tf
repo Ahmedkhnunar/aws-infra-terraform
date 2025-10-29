@@ -3,6 +3,14 @@ variable "environment" {
   description = "Environment name"
 }
 
+variable "eip_map" {
+  type = map(string)
+}
+
+variable "subnet_map" {
+  type = map(string)
+}
+
 variable "tags" {
   type        = map(string)
   description = "Common tags for all resources"

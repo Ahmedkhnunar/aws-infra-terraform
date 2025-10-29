@@ -110,6 +110,21 @@ variable "subnets" {
   }))
 }
 
+variable "nat_gateways" {
+  description = "Map of NAT Gateway configurations."
+  type = map(object({
+    nat_gateway_id = string
+    subnet_id      = string
+    state          = string
+    elastic_ip     = string
+    tags           = list(object({
+      Key   = string
+      Value = string
+    }))
+  }))
+  default = {}
+}
+
 variable "internet_gateways" {
   type = map(object({
     Attachments = list(object({

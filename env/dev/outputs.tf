@@ -48,3 +48,7 @@ output "igw_ids" {
   description = "Internet Gateways created in the Internet Gateway module"
   value       = module.internet_gateway.igw_ids
 }
+output "nat_gateway_ids" {
+  description = "NAT Gateways created in the NAT Gateway module"
+  value       = module.nat_gateway.nat_gateway_ids
+}

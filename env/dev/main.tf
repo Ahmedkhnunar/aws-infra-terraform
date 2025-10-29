@@ -61,6 +61,16 @@ module "internet_gateway" {
   }
 }
 
+module "nat_gateway" {
+  source      = "../../modules/nat_gateway"
+  environment = var.environment
+  tags        = var.tags
+  nat_gateways = var.nat_gateways
+  eip_map = module.eip.eip_ids
+  subnet_map = module.subnet.subnet_ids
+}
+
+
 
 # module "sns" {
 #   source      = "../../modules/sns"
@@ -97,14 +107,6 @@ module "internet_gateway" {
 #   tags            = var.tags
 #   security_groups = var.security_groups
 # }
-
-# module "nat_gateway" {
-#   source       = "../../modules/nat_gateway"
-#   environment  = var.environment
-#   tags         = var.tags
-#   nat_gateways = var.nat_gateways
-# }
-
 
 # -----------------------------
 # 🔵 3️⃣ Data / security / monitoring
