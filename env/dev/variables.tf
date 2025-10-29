@@ -77,6 +77,16 @@ variable "buckets" {
   default = {}
 }
 
+variable "vpcs" {
+  type = map(object({
+    cidr_block           = string
+    instance_tenancy     = optional(string)
+    enable_dns_support   = optional(bool)
+    enable_dns_hostnames = optional(bool)
+    tags                 = optional(list(object({ Key = string, Value = string })))
+  }))
+}
+
 variable "dynamodb_tables" {
   type = map(any)
   default = {}

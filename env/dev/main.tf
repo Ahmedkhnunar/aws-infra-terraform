@@ -24,12 +24,12 @@ module "kms" {
 #   buckets     = var.buckets
 # }
 
-# module "vpc" {
-#   source      = "../../modules/vpc"
-#   environment = var.environment
-#   tags        = var.tags
-#   vpcs        = var.vpcs
-# }
+module "vpc" {
+  source      = "../../modules/vpc"
+  environment = var.environment
+  tags        = var.tags
+  vpcs        = var.vpcs
+}
 
 # module "eip" {
 #   source       = "../../modules/eip"

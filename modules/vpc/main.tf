@@ -18,12 +18,6 @@ resource "aws_vpc" "managed" {
 
   lifecycle {
     ignore_changes = [
-      tags["aws:cloudformation:logical-id"],
-      tags["aws:cloudformation:stack-id"],
-      tags["aws:cloudformation:stack-name"],
-      tags["lambda:createdBy"],
-      tags_all,
-      tags
-      ]
+    ]
   }
 }

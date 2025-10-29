@@ -5,8 +5,22 @@ output "iam_roles" {
   value       = module.iam.iam_roles
 }
 
-
 output "secret_arns" {
   description = "Secret ARNs from the secrets module"
   value       = module.secrets.secret_arns
+}
+
+output "kms_key_ids" {
+  description = "KMS key IDs from the KMS module"
+  value       = module.kms.kms_key_ids
+}
+
+output "kms_alias_names" {
+  description = "KMS alias names from the KMS module"
+  value       = module.kms.kms_alias_names
+}
+
+output "vpc" {
+  description = "VPCs created in the VPC module"
+  value       = module.vpc.vpc_ids
 }
